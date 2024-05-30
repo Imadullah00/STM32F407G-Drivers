@@ -10,7 +10,7 @@
 //Helper Prototypes
 static void I2CGenerateStartCondition(I2C_RegDef_t* pI2Cx);
 static void I2CExecuteAddressPhaseWrite(I2C_RegDef_t* pI2Cx, uint8_t SlaveAddress);
-static void I2CExecuteAddressPhaseRead(I2C_RegDef_t* pI2Cx, uint8_t SlaveAddress); //WARNING HERE
+static void I2CExecuteAddressPhaseRead(I2C_RegDef_t* pI2Cx, uint8_t SlaveAddress); 
 static void I2CClearAddrFlag(I2C_Handle_t *pI2Chandle);
 static void I2CGenerateStartCondition(I2C_RegDef_t* pI2Cx);
 
@@ -25,7 +25,7 @@ static void I2CExecuteAddressPhaseWrite(I2C_RegDef_t* pI2Cx, uint8_t SlaveAddres
 	pI2Cx->DR = SlaveAddress; // Slave Addr + R/nW bit = 0
 }
 
-static void I2CExecuteAddressPhaseRead(I2C_RegDef_t* pI2Cx, uint8_t SlaveAddress) //ERROR HERE
+static void I2CExecuteAddressPhaseRead(I2C_RegDef_t* pI2Cx, uint8_t SlaveAddress) 
 {
 	SlaveAddress = SlaveAddress << 1;
 	SlaveAddress |= 1;
@@ -81,7 +81,7 @@ static void I2CGenerateStartCondition(I2C_RegDef_t* pI2Cx)
 
 
 /*IRQ COnfiguration and ISR Handling*/
-void I2C_IRQInterruptConfig(uint8_t IRQNumber,  uint8_t EnorDi) //WARNING HERE
+void I2C_IRQInterruptConfig(uint8_t IRQNumber,  uint8_t EnorDi) 
 {
 	if(EnorDi == ENABLE)
 	{
@@ -126,7 +126,7 @@ void I2C_IRQInterruptConfig(uint8_t IRQNumber,  uint8_t EnorDi) //WARNING HERE
 		}
 	}
 }
-void I2C_IRQPriorityConfig(uint8_t IRQNumber, uint32_t IRQPriority ) //WARNING HERE
+void I2C_IRQPriorityConfig(uint8_t IRQNumber, uint32_t IRQPriority )
 {
 	uint8_t offset = IRQNumber/4;  //reg number 0-59
 	uint8_t temp2 = IRQNumber % 4; // reg section
@@ -136,7 +136,7 @@ void I2C_IRQPriorityConfig(uint8_t IRQNumber, uint32_t IRQPriority ) //WARNING H
 }
 
 // some general functions
-void I2C_PeripheralControl(I2C_RegDef_t* pI2CX, uint8_t EnorDi) //WARNING HERE
+void I2C_PeripheralControl(I2C_RegDef_t* pI2CX, uint8_t EnorDi)
 {
 	if(EnorDi == ENABLE)
 		{
@@ -147,7 +147,7 @@ void I2C_PeripheralControl(I2C_RegDef_t* pI2CX, uint8_t EnorDi) //WARNING HERE
 			pI2CX->CR1 &= ~(1 << I2C_CR1_PE);
 		}
 }
-uint8_t I2C_GetFlagStatus(I2C_RegDef_t *pI2Cx , uint32_t FlagName) // WARNING HERE
+uint8_t I2C_GetFlagStatus(I2C_RegDef_t *pI2Cx , uint32_t FlagName) 
 {
 	if(pI2Cx->SR1 & FlagName)
 	{
